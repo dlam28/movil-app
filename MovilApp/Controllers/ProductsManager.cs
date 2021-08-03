@@ -10,7 +10,7 @@ namespace MovilApp.Controllers
 {
     class ProductsManager
     {
-        string UrlAllProducts = "localhost/api/producto/allProducts";
+        string UrlAllProducts = "http://192.168.159.1:45455/api/producto/allProducts";
 
 
         HttpClient GetClient()
@@ -22,7 +22,7 @@ namespace MovilApp.Controllers
             return client;
         }
 
- 
+
         public async Task<IEnumerable<Products>> ObtenerUsuarios()
         {
             HttpClient httpClient = GetClient();

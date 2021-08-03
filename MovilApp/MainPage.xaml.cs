@@ -35,24 +35,35 @@ namespace MovilApp
 
         private async void BtnIr_Clicked(object sender, EventArgs e)
         {
-            UserManager usuarioManager = new UserManager();
-            Login userLogin = await usuarioManager.Validar(txtCorreo.Text, txtPass.Text);
-            App.usuarioSesionID = await usuarioManager.obtenerUsuarioID(txtCorreo.Text, txtPass.Text);
-            App.usuarioSesionEmail = txtCorreo.Text;
 
-            if (userLogin != null)
+            try
             {
-                await DisplayAlert("Inicio de Sesion", "Ingreso Correcto, Bienvenido!!", "Confirmar");
-                await ((NavigationPage)this.Parent).PushAsync(new DeBanco());
-            }
-            else if (userLogin == null)
-            {
-                await DisplayAlert("Inicio de Sesion", "Ingreso Incorrecto, Revise sus credenciales", "Cancelar");
+                if (txtCorreo.Text == null || txtPass.Text == null)
+                {
+                    await DisplayAlert("Inicio de Sesion", $"Complete los datos para logearse", "Confirmar");
+                }
+                else
+                {
+                    UserManager usuarioManager = new UserManager();
+                    Login userLogin = await usuarioManager.Validar(txtCorreo.Text, txtPass.Text);
+                    App.usuarioSesionID = await usuarioManager.obtenerUsuarioID(txtCorreo.Text, txtPass.Text);
+                    App.usuarioSesionEmail = txtCorreo.Text;
+
+                    if (userLogin != null)
+                    {
+                        await DisplayAlert("Inicio de Sesion", "Ingreso Correcto, Bienvenido!!", "Confirmar");
+                        await ((NavigationPage)this.Parent).PushAsync(new DeBanco());
+                    }
+                    else
+                    {
+                        await DisplayAlert("Inicio de Sesion", "Ingreso Incorrecto, Revise sus credenciales", "Cancelar");
+                    }
+                }
 
             }
-            else
+            catch (Exception error)
             {
-                await DisplayAlert("Inicio de Sesion", "Ingreso Incorrecto, Revise sus credenciales", "Cancelar");
+                await DisplayAlert("Inicio de Sesion", $"Error Message: {error.Message}", "Confirmar");
             }
 
         }

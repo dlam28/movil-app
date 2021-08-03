@@ -10,7 +10,7 @@ namespace MovilApp.Controllers
 {
     class CuotaManager
     {
-        string UrlAllCuotas = "localhost/api/cuota/allCuota";
+        string UrlAllCuotas = "http://192.168.159.1:45455/api/cuota/allCuota";
 
 
         HttpClient GetClient()
@@ -22,7 +22,7 @@ namespace MovilApp.Controllers
             return client;
         }
 
- 
+
         public async Task<IEnumerable<Cuot>> ObtenerCuota()
         {
             HttpClient httpClient = GetClient();

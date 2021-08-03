@@ -51,9 +51,9 @@ namespace MovilApp
 
         int meses;
         private void calcularPagoMensual()
-        {        
+        {
 
-            switch(miCuota.CUOTA_ID)
+            switch (miCuota.CUOTA_ID)
             {
                 case 1:
                     meses = 3;
@@ -64,7 +64,7 @@ namespace MovilApp
                     break;
                 case 3:
                     meses = 9;
-                   break;
+                    break;
             }
         }
 
@@ -88,7 +88,7 @@ namespace MovilApp
                     PLAN_ID = miCuota.CUOTA_ID,
                     MONTO_FACTURA = Monto,
                     CANT_PRODUCTOS = Products.carrito.Count,
-                    PAGO_MENSUAL = Monto/meses,
+                    PAGO_MENSUAL = Monto / meses,
                     ESTADO = "1"
 
                 };
@@ -127,9 +127,9 @@ namespace MovilApp
                         $"ID de Factura: {App.usuarioSesionID}\n" +
                         $"ID Plan: {miCuota.CUOTA_ID}\n" +
                         $"Monto de la factura: {Monto}\n" +
-                        $"Cantidad de productos: {Products.carrito.Count}"+
-                        $"Pago mensual: {Monto/meses}"));
-                    await DisplayAlert("Factura generada","Gracias por elegirnos","Aceptar");
+                        $"Cantidad de productos: {Products.carrito.Count}" +
+                        $"Pago mensual: {Monto / meses}"));
+                    await DisplayAlert("Factura generada", "Gracias por elegirnos", "Aceptar");
                     await ((NavigationPage)this.Parent).PushAsync(new DeBanco());
                 }
                 else
@@ -138,7 +138,7 @@ namespace MovilApp
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 await DisplayAlert("Proceso de Compra", "Error en la Compra del Carrito, intente denuevo", "Aceptar");
             }

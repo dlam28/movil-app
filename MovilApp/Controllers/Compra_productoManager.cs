@@ -12,8 +12,8 @@ namespace MovilApp.Controllers
     {
 
 
-        
-        string Urlpost = "localhost/api/Compra_producto";
+
+        string Urlpost = "http://192.168.159.1:45455/api/Compra_producto";
 
         HttpClient GetClient()
         {
